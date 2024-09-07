@@ -36,8 +36,12 @@ async function findAll() {
 async function findById(id) {
   const user = await models.User.findOne({
     where: { id },
+    attributes: { exclude: ['password'] },
   });
-  return { status: 200, data: { user } };
+  if (!user) {
+    return { status: 404, data: { message: 'User does not exist' } };
+  }
+  return { status: 200, data: user };
 }
 
 module.exports = { insert, findAll, findById };
