@@ -21,9 +21,23 @@ async function insert(userInsertData) {
   if (user) {
     return { status: 409, data: { message: 'User already registered' } };
   }
-  await models.User.create(userInsertData);
-  const token = generateToken(email);
+  const newUser = await models.User.create(userInsertData);
+  const token = generateToken(newUser.id);
   return { status: 201, data: { token } };
 }
 
-module.exports = { insert };
+async function findAll() {
+  const users = await models.User.findAll({
+    attributes: { exclude: ['password'] },
+  });
+  return { status: 200, data: users };
+}
+
+async function findById(id) {
+  const user = await models.User.findOne({
+    where: { id },
+  });
+  return { status: 200, data: { user } };
+}
+
+module.exports = { insert, findAll, findById };
