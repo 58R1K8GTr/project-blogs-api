@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  const users = sequelize.define(
+  const Users = sequelize.define(
     'User',
     {
       id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
-  users.associate = (models) => {
-    users.hasMany(models.BlogPosts,
+  Users.associate = (models) => {
+    Users.hasMany(models.BlogPosts,
       { foreignKey: 'userId', as: 'blogPosts' }
     )
   }
 
-  return users;
+  return Users;
 };
