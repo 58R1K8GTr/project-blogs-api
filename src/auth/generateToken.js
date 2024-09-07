@@ -4,8 +4,8 @@ const secret = process.env.JWT_SECRET;
 
 const jwtConfig = { expiresIn: '7d', algorithm: 'HS256' };
 
-function generateToken(email) {
-  const token = jwt.sign({ data: { email } }, secret, jwtConfig);
+function generateToken(id) {
+  const token = jwt.sign({ data: { userId: id } }, secret, jwtConfig);
   return token;
 }
 

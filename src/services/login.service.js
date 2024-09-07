@@ -12,12 +12,11 @@ async function getByEmail(loginFields) {
   }
   const user = await models.User.findOne({
     where: { email },
-    attributes: ['email', 'password'],
   });
   if (!user) {
     return { status: 400, data: { message: 'Invalid fields' } };
   }
-  const token = generateToken(email);
+  const token = generateToken(user.id);
   return { status: 200, data: { token } };
 }
 
