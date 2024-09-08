@@ -29,4 +29,15 @@ const userPostSchema = joi.object({
   image: joi.string().max(255).optional(),
 });
 
-module.exports = { loginPostSchema, userPostSchema };
+const categoryPostSchema = joi.object({
+  name: joi.string().required()
+    .messages({
+      'any.required': '"name" is required',
+    }),
+});
+
+module.exports = {
+  loginPostSchema,
+  userPostSchema,
+  categoryPostSchema,
+};
