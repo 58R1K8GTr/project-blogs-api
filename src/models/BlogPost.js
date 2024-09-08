@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
       id: { primaryKey: true, autoIncrement: true, type: DataTypes.INTEGER },
       title: { type: DataTypes.STRING(255), allowNull: false },
       content: { type: DataTypes.STRING(255), allowNull: false },
-      userId: { type: DataTypes.INTEGER, onUpdate: 'CASCADE', onDelete: 'CASCADE', allowNull: false, references: { model: 'users', key: 'id' } },
+      userId: {
+        type: DataTypes.INTEGER,
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        allowNull: false,
+        foreignKey: true,
+        references: { model: 'users', key: 'id' }
+      },
       published: { type: DataTypes.DATE, allowNull: false },
       updated: { type: DataTypes.DATE, allowNull: false },
     },
@@ -21,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       models.User,
       { foreignKey: 'userId', as: 'user' },
     );
+    BlogPost.belongsTo(
+      models.PostCategory,
+      { foreignKey: 'categoryId', as: 'postCategory' },
+    )
   };
 
   return BlogPost;
