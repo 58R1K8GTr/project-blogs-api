@@ -14,4 +14,9 @@ async function insert(insertData) {
   return { status: 201, data: user };
 }
 
-module.exports = { insert };
+async function findAll() {
+  const users = await models.Category.findAll();
+  return { status: 200, data: users };
+}
+
+module.exports = { insert, findAll };

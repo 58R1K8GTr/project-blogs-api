@@ -5,4 +5,9 @@ async function insert(req, res) {
   return res.status(status).json(data);
 }
 
-module.exports = { insert };
+async function findAll(_req, res) {
+  const { status, data } = await CategoryService.findAll();
+  return res.status(status).json(data);
+}
+
+module.exports = { insert, findAll };
