@@ -43,10 +43,11 @@ const postSchema = joi.object({
     .messages({ 'any.required': fieldsAreMissing, 'string.empty': fieldsAreMissing }),
   content: joi.string().required()
     .messages({ 'any.required': fieldsAreMissing, 'string.empty': fieldsAreMissing }),
-  categoryIds: joi.array().items(joi.number().required()).required()
+  categoryIds: joi.array().items(joi.number().required()).min(1).required()
     .messages({
-      'any.required': fieldsAreMissing,
       'array.includesRequiredUnknowns': fieldsAreMissing,
+      'any.required': fieldsAreMissing,
+      'array.min': fieldsAreMissing,
     }),
 });
 
