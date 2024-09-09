@@ -18,7 +18,12 @@ async function insert({ user: { id: userId }, body: insertData }) {
   );
   const insertBulk = categories.map((categoryId) => ({ categoryId, postId: post.id }));
   await models.PostCategory.bulkCreate(insertBulk);
+  console.log('aqui ->', insertData, '\n', error, '\n', condition);
   return { status: 201, data: post };
+}
+
+async function findAll() {
+
 }
 
 module.exports = { insert };
