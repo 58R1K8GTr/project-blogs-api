@@ -23,10 +23,11 @@ module.exports = async (req, res, next) => {
       return res.status(401).json({ message: 'Token not found' });
     }
     verifyAndThrow(() => !token, 'Token not found');
-    const decoded = jwt.verify(token, secret);
-    const user = await findByIdUser(decoded.data.userId);
+    const { data: { userId } } = jwt.verify(token, secret);
+    const user = await findByIdUser(userId);
     verifyAndThrow(() => !user, 'Usuário não encontrado');
-    req.user = user;
+    const { id } = user;
+    req.userId = id;
     next();
   } catch (error) {
     console.log(error);

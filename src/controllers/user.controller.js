@@ -1,7 +1,8 @@
 const { UserService } = require('../services');
 
 async function insert(req, res) {
-  const { status, data } = await UserService.insert(req.body);
+  const { body } = req;
+  const { status, data } = await UserService.insert(body);
   res.status(status).json(data);
 }
 
