@@ -1,7 +1,8 @@
 const { LoginService } = require('../services');
 
 async function login(req, res) {
-  const { status, data } = await LoginService.getByEmail(req.body);
+  const { body } = req;
+  const { status, data } = await LoginService.getByEmail(body);
   res.status(status).json(data);
 }
 

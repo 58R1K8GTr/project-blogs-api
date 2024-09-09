@@ -16,7 +16,8 @@ async function getByEmail(loginFields) {
   if (!user) {
     return { status: 400, data: { message: 'Invalid fields' } };
   }
-  const token = generateToken(user.id);
+  const { id } = user;
+  const token = generateToken(id);
   return { status: 200, data: { token } };
 }
 

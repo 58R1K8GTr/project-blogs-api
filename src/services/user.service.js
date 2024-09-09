@@ -21,8 +21,8 @@ async function insert(userInsertData) {
   if (user) {
     return { status: 409, data: { message: 'User already registered' } };
   }
-  const newUser = await models.User.create(userInsertData);
-  const token = generateToken(newUser.id);
+  const { id } = await models.User.create(userInsertData);
+  const token = generateToken(id);
   return { status: 201, data: { token } };
 }
 
