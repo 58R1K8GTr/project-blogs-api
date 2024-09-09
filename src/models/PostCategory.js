@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       models.Category,
       {
         foreignKey: 'postId',
-        as: 'category',
+        as: 'categories',
         otherKey: 'categoryId',
         through: PostCategory,
         onDelete: 'CASCADE',
