@@ -12,12 +12,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
-  Category.associate = (models) => {
-    Category.belongsTo(
-      models.PostCategory,
-      { foreignKey: 'postId', as: 'postCategory' },
-    );
-  };
-
   return Category;
 };

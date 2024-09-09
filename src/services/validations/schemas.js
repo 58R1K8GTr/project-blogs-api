@@ -1,19 +1,21 @@
 const joi = require('joi');
 
-const loginPostSchema = joi.object({
+const fieldsAreMissing = 'Some required fields are missing';
+
+const loginSchema = joi.object({
   email: joi.string().max(255).required()
     .messages({
-      'any.required': 'Some required fields are missing',
-      'string.empty': 'Some required fields are missing',
+      'any.required': fieldsAreMissing,
+      'string.empty': fieldsAreMissing,
     }),
   password: joi.string().max(255).required()
     .messages({
-      'any.required': 'Some required fields are missing',
-      'string.empty': 'Some required fields are missing',
+      'any.required': fieldsAreMissing,
+      'string.empty': fieldsAreMissing,
     }),
 });
 
-const userPostSchema = joi.object({
+const userSchema = joi.object({
   displayName: joi.string().min(8).required()
     .messages({
       'string.min': '"displayName" length must be at least 8 characters long',
@@ -29,15 +31,23 @@ const userPostSchema = joi.object({
   image: joi.string().max(255).optional(),
 });
 
-const categoryPostSchema = joi.object({
+const categorySchema = joi.object({
   name: joi.string().required()
     .messages({
       'any.required': '"name" is required',
     }),
 });
 
-module.exports = {
-  loginPostSchema,
-  userPostSchema,
-  categoryPostSchema,
-};
+const postSchema = joi.object({
+  title: joi.string().required()
+    .messages({ 'any.required': fieldsAreMissing, 'string.empty': fieldsAreMissing }),
+  content: joi.string().required()
+    .messages({ 'any.required': fieldsAreMissing, 'string.empty': fieldsAreMissing }),
+  categoryIds: joi.array().items(joi.number().required()).required()
+    .messages({
+      'any.required': fieldsAreMissing,
+      'array.includesRequiredUnknowns': fieldsAreMissing,
+    }),
+});
+
+module.exports = { loginSchema, userSchema, categorySchema, postSchema };
