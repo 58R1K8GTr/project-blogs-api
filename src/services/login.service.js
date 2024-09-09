@@ -1,5 +1,5 @@
 const models = require('../models');
-const { loginSchema } = require('./validations/schemas');
+const { loginSchema } = require('./validations/schemas.part1');
 const generateToken = require('../auth/generateToken');
 
 const statusCode = { 'any.required': 400, 'string.empty': 400 };

@@ -1,9 +1,9 @@
-const models = require('../models');
-const { postSchema } = require('./validations/schemas');
+const models = require('../../models');
+const { postPostSchema } = require('../validations/schemas.part1');
 
 async function insert(userId, insertData) {
   const categories = (await models.Category.findAll()).map(({ id }) => id);
-  const { error } = postSchema.validate(insertData);
+  const { error } = postPostSchema.validate(insertData);
   if (error) {
     return { status: 400, data: { message: error.message } };
   }

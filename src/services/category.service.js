@@ -1,5 +1,5 @@
 const models = require('../models');
-const { categorySchema } = require('./validations/schemas');
+const { categorySchema } = require('./validations/schemas.part1');
 
 const statusCode = {
   'any.required': 400,
