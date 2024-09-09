@@ -32,8 +32,22 @@ async function findAll() {
   return { status: 200, data: allPostsUsers };
 }
 
-// async function find(id) {
+async function find(id) {
+  const { User, Category } = models;
+  const user = await models.BlogPost.findOne(
+    {
+      where: { id },
+      attributes: { exclude: ['password'] },
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } },
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ],
+    },
+  );
+  if (!user) {
+    return { status: 404, data: { message: 'Post does not exist' } };
+  }
+  return { status: 200, data: user };
+}
 
-// }
-
-module.exports = { insert, findAll };
+module.exports = { insert, findAll, find };
