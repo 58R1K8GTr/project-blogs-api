@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: true,
         references: { model: 'users', key: 'id' }
       },
-      published: { type: DataTypes.DATE, allowNull: false },
-      updated: { type: DataTypes.DATE, allowNull: false },
+      published: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
+      updated: { type: DataTypes.DATE, allowNull: false, defaultValue: DataTypes.NOW },
     },
     {
       timestamps: false,
@@ -28,10 +28,6 @@ module.exports = (sequelize, DataTypes) => {
       models.User,
       { foreignKey: 'userId', as: 'user' },
     );
-    BlogPost.belongsTo(
-      models.PostCategory,
-      { foreignKey: 'categoryId', as: 'postCategory' },
-    )
   };
 
   return BlogPost;

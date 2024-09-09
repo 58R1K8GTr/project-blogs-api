@@ -1,6 +1,6 @@
 const models = require('../models');
 const generateToken = require('../auth/generateToken');
-const { userPostSchema } = require('./validations/schemas');
+const { userSchema } = require('./validations/schemas');
 
 const statusCode = {
   'any.required': 400,
@@ -10,7 +10,7 @@ const statusCode = {
 
 async function insert(userInsertData) {
   const { email } = userInsertData;
-  const { error } = userPostSchema.validate(userInsertData);
+  const { error } = userSchema.validate(userInsertData);
   if (error) {
     return { status: statusCode[error.details[0].type], data: { message: error.message } };
   }

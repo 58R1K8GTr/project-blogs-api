@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 
-const { findById } = require('../utils/db/queries');
+const { findByIdUser } = require('../utils/db/queries');
 
 const secret = process.env.JWT_SECRET;
 
@@ -24,7 +24,7 @@ module.exports = async (req, res, next) => {
     }
     verifyAndThrow(() => !token, 'Token not found');
     const decoded = jwt.verify(token, secret);
-    const user = await findById(decoded.data.userId);
+    const user = await findByIdUser(decoded.data.userId);
     verifyAndThrow(() => !user, 'Usuário não encontrado');
     req.user = user;
     next();
