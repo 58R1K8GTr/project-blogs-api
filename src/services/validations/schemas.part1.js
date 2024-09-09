@@ -38,7 +38,7 @@ const categorySchema = joi.object({
     }),
 });
 
-const postSchema = joi.object({
+const postPostSchema = joi.object({
   title: joi.string().required()
     .messages({ 'any.required': fieldsAreMissing, 'string.empty': fieldsAreMissing }),
   content: joi.string().required()
@@ -51,4 +51,4 @@ const postSchema = joi.object({
     }),
 });
 
-module.exports = { loginSchema, userSchema, categorySchema, postSchema };
+module.exports = { loginSchema, userSchema, categorySchema, postPostSchema };

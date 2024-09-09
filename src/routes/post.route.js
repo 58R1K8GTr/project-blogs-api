@@ -7,5 +7,6 @@ const routerPost = express.Router();
 routerPost.post('/', validateJWT, postController.insert);
 routerPost.get('/', validateJWT, postController.findAll);
 routerPost.get('/:id', validateJWT, postController.find);
+routerPost.put('/:id', validateJWT, postController.update);
 
 module.exports = routerPost;
