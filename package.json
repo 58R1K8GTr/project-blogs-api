@@ -13,7 +13,7 @@
     "jsonwebtoken": "9.0.0",
     "morgan": "1.10.0",
     "mysql2": "3.0.0",
-    "sequelize": "6.30.0",
+    "sequelize": "6.37.8",
     "shelljs": "0.8.5"
   },
   "main": "src/server.js",
