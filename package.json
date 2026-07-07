@@ -9,7 +9,7 @@
   "dependencies": {
     "express": "4.18.2",
     "express-async-errors": "3.1.1",
-    "joi": "17.6.0",
+    "joi": "18.2.3",
     "jsonwebtoken": "9.0.0",
     "morgan": "1.10.0",
     "mysql2": "3.0.0",
@@ -40,7 +40,7 @@
     "chai-http": "4.3.0",
     "change-case": "4.1.2",
     "eslint-config-trybe-backend": "2.1.0",
-    "frisby": "2.1.2",
+    "frisby": "2.2.0",
     "jest": "26.0.1",
     "jest-each": "28.0.1",
     "mocha": "8.4.0",
