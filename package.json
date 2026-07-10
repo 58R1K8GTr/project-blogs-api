@@ -11,7 +11,7 @@
     "express-async-errors": "3.1.1",
     "joi": "18.2.3",
     "jsonwebtoken": "9.0.0",
-    "morgan": "1.10.0",
+    "morgan": "1.11.0",
     "mysql2": "3.0.0",
     "sequelize": "6.37.8",
     "shelljs": "0.8.5"
